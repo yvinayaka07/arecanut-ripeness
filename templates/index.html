@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arecanut Ripeness Detection</title>
+    <meta name="description" content="Real-time arecanut ripeness detection using YOLO and DINOv2">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="glass-panel">
+            <div class="logo">🌿</div>
+            <h1>Arecanut Vision (YOLO + DINOv2)</h1>
+            <div class="status-badge" id="status-badge">● Live</div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-layout">
+
+            <!-- Video Feed -->
+            <section class="video-section glass-panel">
+                <div class="video-wrapper">
+                    <img id="video-feed" src="/video_feed" alt="Live Camera Feed">
+                </div>
+            </section>
+
+            <!-- Metrics Sidebar -->
+            <aside class="dashboard-section glass-panel">
+                <h2>Real-Time Metrics</h2>
+                <div class="metrics-grid">
+
+                    <div class="metric-card full-width">
+                        <span class="metric-title">Detected</span>
+                        <span class="metric-value" id="val-detected">0</span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-title">Ripe</span>
+                        <span class="metric-value text-green" id="val-ripe">0</span>
+                    </div>
+
+                    <div class="metric-card">
+                        <span class="metric-title">Unripe</span>
+                        <span class="metric-value text-red" id="val-unripe">0</span>
+                    </div>
+                    
+                    <div id="model-status-text" style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;"></div>
+
+                </div>
+
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <h2>Upload Image</h2>
+                    <label class="upload-label" for="img-upload">
+                        📁 Choose Image
+                        <input type="file" id="img-upload" accept="image/*" style="display:none">
+                    </label>
+                    <div id="upload-result" class="upload-result"></div>
+                </div>
+            </aside>
+
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

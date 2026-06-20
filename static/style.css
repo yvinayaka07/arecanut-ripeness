@@ -1,0 +1,218 @@
+/* 
+ * Arecanut Ripeness Detection — UI
+ * Dark glassmorphism with neon accents
+ */
+
+:root {
+    --bg-dark: #0f111a;
+    --glass-bg: rgba(25, 28, 41, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --accent-blue: #00d2ff;
+    --accent-green: #00ff88;
+    --accent-red: #ff4a4a;
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: radial-gradient(circle at top right, #1a1c2c, var(--bg-dark));
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container {
+    width: 95%;
+    max-width: 1400px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Glass Panel */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    gap: 1rem;
+}
+
+.logo { font-size: 2rem; }
+
+h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    flex-grow: 1;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(0, 255, 136, 0.1);
+    color: var(--accent-green);
+    font-weight: 700;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; text-shadow: 0 0 8px var(--accent-green); }
+}
+
+/* Main Layout */
+.main-layout {
+    display: flex;
+    gap: 1.5rem;
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+/* Video */
+.video-section {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.video-wrapper {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+}
+
+#video-feed {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Sidebar */
+.dashboard-section {
+    flex: 1;
+    min-width: 280px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+}
+
+.dashboard-section h2 {
+    font-size: 1rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Metric Cards */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.3rem;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.metric-card.full-width {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metric-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.metric-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+.metric-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.text-green { color: var(--accent-green); }
+.text-red   { color: var(--accent-red); }
+.text-blue  { color: var(--accent-blue); text-shadow: 0 0 10px rgba(0,210,255,0.4); }
+
+/* Upload Section */
+.upload-section {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.upload-label {
+    display: block;
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 10px;
+    border: 1px dashed rgba(255,255,255,0.2);
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.upload-label:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.upload-result {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    min-height: 2rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-layout { flex-direction: column; }
+    .metrics-grid { flex-direction: row; flex-wrap: wrap; }
+    .metric-card { flex: 1; min-width: 140px; }
+}

@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.env
+
+# Datasets
+# Ignore all images and data inside the dataset folder
+dataset/
+
+# Model Weights
+# GitHub has a 100MB strict file size limit. 
+# best_model.pth is ~250MB and will cause your push to fail!
+*.pt
+*.pth
+*.onnx
+models/checkpoints/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Logs and Temp
+*.log
+scratch/
+outputs/

@@ -1,0 +1,65 @@
+# =============================================================================
+# Arecanut Ripeness Detection — Configuration
+# =============================================================================
+
+project:
+  name: "Arecanut Ripeness Detection"
+  version: "1.0.0"
+
+# -----------------------------------------------------------------------------
+# Paths
+# -----------------------------------------------------------------------------
+paths:
+  dataset_root:    "dataset"
+  train_dir:       "dataset/train"
+  val_dir:         "dataset/val"
+  test_dir:        "dataset/test"
+  checkpoints_dir: "models/checkpoints"
+
+# -----------------------------------------------------------------------------
+# Classes
+# -----------------------------------------------------------------------------
+classes:
+  names: ["ripe", "unripe"]
+  num_classes: 2
+
+# -----------------------------------------------------------------------------
+# Detection (YOLO — used in web_app if needed)
+# -----------------------------------------------------------------------------
+detection:
+  model_name: "yolo26n.pt"
+  device: "auto"          # auto | cpu | cuda
+
+# -----------------------------------------------------------------------------
+# Classification (DINOv2)
+# -----------------------------------------------------------------------------
+classification:
+  backbone: "dinov2_vits14"   # vits14 | vitb14 | vitl14
+  freeze_backbone: true        # Phase 1: train head only
+  unfreeze_after_epoch: 5      # Phase 2: fine-tune full model
+
+  input:
+    img_size: 224
+    mean: [0.485, 0.456, 0.406]
+    std:  [0.229, 0.224, 0.225]
+
+  head:
+    hidden_dim: 256
+    dropout: 0.3
+
+  training:
+    epochs: 50
+    batch_size: 4
+    learning_rate: 1.0e-4
+    backbone_lr_multiplier: 0.1
+    weight_decay: 1.0e-4
+    patience: 10
+    label_smoothing: 0.1
+
+# -----------------------------------------------------------------------------
+# Hardware
+# -----------------------------------------------------------------------------
+hardware:
+  num_workers: 0
+  pin_memory: true
+  mixed_precision: true      # AMP — auto-disabled on CPU
